@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://g.alicdn.com/kissy/k/1.4.7/seed.js"></script>
+    <script src="config.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        KISSY.add('hello', function (S) {
+            return {
+                a: 1
+            };
+        });
+
+        // 这里的use()不会造成一次http请求，因为模块a已经被注册过
+        KISSY.use('hello', function (S, A) {
+            // Your Code
+            console.log('user S:', S);
+            console.log('user A:', A.a);
+        });
+
+        KISSY.use('b', function (S, A) {
+            // Your Code
+            console.log('user b:', A);
+        })
+
+        KISSY.config('modules', {
+            'fan': {
+                alias: ['test']
+            }
+        });
+        KISSY.use('test', function (S, A) {
+            // A 为模块'path/to/a'的返回对象
+            // Your Code
+            console.log('user test:', A);
+        })
+    </script>
+
+</body>
+
+</html>
